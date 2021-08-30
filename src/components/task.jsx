@@ -8,25 +8,27 @@ class Task extends Component {
     completed: this.props.completed,
     edit: true,
   };
-
+  // Handling editing a task (Changing element)
   onTaskClick = () => {
     this.setState({ edit: false });
   };
 
   onTaskChange = (newTitle) => {
-    console.log("Updated input from " + this.state.title + " to: " + newTitle);
+    //console.log("Updated input from " + this.state.title + " to: " + newTitle);
     this.setState({ title: newTitle });
   };
 
   render() {
+    const { title, edit } = this.state;
     return (
-      <ItemGroup
-        title={this.state.title}
-        completed={this.state.completed.toString()}
-        edit={this.state.edit}
-        onClick={this.onTaskClick}
-        onChange={this.onTaskChange}
-      />
+      <React.Fragment>
+        <ItemGroup
+          title={title}
+          edit={edit}
+          onClick={this.onTaskClick}
+          onChange={this.onTaskChange}
+        />
+      </React.Fragment>
     );
   }
 }

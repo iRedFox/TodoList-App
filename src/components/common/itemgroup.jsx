@@ -1,11 +1,13 @@
 import React from "react";
 
-const ItemGroup = ({ title, completed, edit, onClick, onChange }) => {
+const ItemGroup = ({ title, edit, onClick, onChange }) => {
   if (edit) {
     return (
-      <li className="list-group-item" onClick={() => onClick()}>
-        {title}
-      </li>
+      <React.Fragment>
+        <li className="list-group-item" onClick={() => onClick()}>
+          {title}
+        </li>
+      </React.Fragment>
     );
   } else {
     return (

@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import Task from "./task";
+import Complete from "./common/complete";
+
 class Tasks extends Component {
   state = {
     id: this.props.id,
@@ -7,22 +9,37 @@ class Tasks extends Component {
       { id: 0, title: "Eating", completed: false },
       { id: 1, title: "Sleeping", completed: true },
       { id: 2, title: "Eating", completed: false },
+      { id: 3, title: "gaming", completed: true },
     ],
   };
 
-  renderList() {
-    if (this.state.tasks.length === 0)
-      return <p>You have nothing in your list!</p>;
+  handleCheck = (task) => {
+    const tasks = [...this.state.tasks];
+    const index = tasks.indexOf(task);
+    tasks[index] = { ...tasks[index] };
+    tasks[index].completed = !tasks[index].completed;
+    this.setState({ tasks });
+  };
+
+  renderList = () => {
+    const { tasks } = this.state;
+    if (tasks.length === 0) return <p>You have nothing in your list!</p>;
     return (
       <ul className="list-group">
-        {this.state.tasks.map((task) => (
-          <Task key={task.id} title={task.title} completed={task.completed} />
+        {tasks.map((task) => (
+          <div key={task.id}>
+            <Complete
+              completed={task.completed}
+              onClick={() => this.handleCheck(task)}
+            />
+            <Task title={task.title} />
+          </div>
         ))}
       </ul>
     );
-  }
+  };
+
   render() {
-    console.log(this.state.id);
     return <div>{this.renderList()}</div>;
   }
 }
