@@ -4,7 +4,7 @@ import Complete from "./common/complete";
 
 class Tasks extends Component {
   state = {
-    id: this.props.id,
+    id: this.props.tasks_id,
     tasks: [
       { id: 0, title: "Eating", completed: false },
       { id: 1, title: "Sleeping", completed: true },
