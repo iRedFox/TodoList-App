@@ -7,7 +7,6 @@ const Complete = ({ completed, onClick }) => {
       onClick={onClick}
       icon={[type, "check-square"]}
       transform="grow-6"
-      className="fa-beat"
     />
   );
 };

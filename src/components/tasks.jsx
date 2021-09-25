@@ -18,6 +18,7 @@ class Tasks extends Component {
     const index = tasks.indexOf(task);
     tasks[index] = { ...tasks[index] };
     tasks[index].completed = !tasks[index].completed;
+
     this.setState({ tasks });
   };
 
@@ -25,18 +26,15 @@ class Tasks extends Component {
     const { tasks } = this.state;
     if (tasks.length === 0) return <p>You have nothing in your list!</p>;
     return (
-      <ul className="list-group list-group-flush">
+      <ul className="list-group list-group-flush text-center">
         {tasks.map((task) => (
-          <div key={task.id}>
-            <li className="list-group-item">
-              <Complete
-                completed={task.completed}
-                onClick={() => this.handleCheck(task)}
-              />
-            </li>
-
-            <Task title={task.title} />
-          </div>
+          <React.Fragment>
+            <Complete
+              completed={task.completed}
+              onClick={() => this.handleCheck(task)}
+            />
+            <Task title={task.title} completed={task.completed} />
+          </React.Fragment>
         ))}
       </ul>
     );

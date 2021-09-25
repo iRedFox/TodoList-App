@@ -5,7 +5,6 @@ import ItemGroup from "./common/itemgroup";
 class Task extends Component {
   state = {
     title: this.props.title,
-    completed: this.props.completed,
     edit: true,
   };
   // Handling editing a task (Changing element)
@@ -14,7 +13,6 @@ class Task extends Component {
   };
 
   onTaskChange = (newTitle) => {
-    //console.log("Updated input from " + this.state.title + " to: " + newTitle);
     this.setState({ title: newTitle });
   };
 
@@ -24,6 +22,7 @@ class Task extends Component {
       <React.Fragment>
         <ItemGroup
           title={title}
+          completed={this.props.completed}
           edit={edit}
           onClick={this.onTaskClick}
           onChange={this.onTaskChange}
